@@ -116,6 +116,7 @@ public class roundJFrame extends javax.swing.JFrame {
                 gameFrame game = new gameFrame();
                 game.inital(gameMode, round);
                 game.setVisible(true);
+                game.setResizable(false);
             }
         });
     }

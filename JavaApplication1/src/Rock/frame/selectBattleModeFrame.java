@@ -86,25 +86,24 @@ public class selectBattleModeFrame extends javax.swing.JFrame {
 
     private void manVSManActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_manVSManActionPerformed
         dispose();
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-               roundJFrame round =  new roundJFrame();
-               round.changeBattleMode("Man VS Man");
-               round.setVisible(true);
-            }
-        });
+        createRoundFrame();
     }//GEN-LAST:event_manVSManActionPerformed
 
     private void manVSComputerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_manVSComputerActionPerformed
         dispose();
+        createRoundFrame();
+    }//GEN-LAST:event_manVSComputerActionPerformed
+
+    public void createRoundFrame() {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-               roundJFrame round =  new roundJFrame();
-               round.changeBattleMode("Man VS Computer");
-               round.setVisible(true);
+                roundJFrame round = new roundJFrame();
+                round.changeBattleMode("Man VS Computer");
+                round.setVisible(true);
+                round.setResizable(false);
             }
         });
-    }//GEN-LAST:event_manVSComputerActionPerformed
+    }
 
     /**
      * @param args the command line arguments

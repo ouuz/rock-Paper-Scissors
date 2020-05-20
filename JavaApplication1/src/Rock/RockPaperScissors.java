@@ -6,12 +6,13 @@
 package Rock;
 
 import Rock.frame.selectBattleModeFrame;
+
 /**
  *
  * @author ouu
  */
 
-public class RockPaperScissors extends JFrame {
+public class RockPaperScissors  {
 
     /*
      * @description 创建新窗口：选择玩家人数的窗口
@@ -19,7 +20,9 @@ public class RockPaperScissors extends JFrame {
     public RockPaperScissors() {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new selectBattleModeFrame().setVisible(true);
+                selectBattleModeFrame selectBattleMode = new selectBattleModeFrame();
+                selectBattleMode.setVisible(true);
+                selectBattleMode.setResizable(false);;
             }
         });
     }

@@ -326,7 +326,9 @@ public class gameFrame extends javax.swing.JFrame {
                     if (flag == 2) {
                         int player1Code = player1.getFistCode();
                         int player2Code = player2.getFistCode();
+                        beginBtn.removeKeyListener(this);
                         mistakeProofing(player1Code, player2Code);
+                        
                         flag = 0;
                     }
                 }
@@ -341,6 +343,7 @@ public class gameFrame extends javax.swing.JFrame {
                     getKeyWord(e, player1);
                     int player1Code = player1.getFistCode();
                     int player2Code = player2.getFistCode();
+                    beginBtn.removeKeyListener(this);
                     mistakeProofing(player1Code, player2Code);
                 }
             });
