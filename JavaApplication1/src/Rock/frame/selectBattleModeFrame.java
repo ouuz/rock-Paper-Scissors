@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 package Rock.frame;
-import Rock.RockPaperScissors;
+
 /**
  *
  * @author ouu
@@ -56,13 +56,16 @@ public class selectBattleModeFrame extends javax.swing.JFrame {
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 1;
         gridBagConstraints.gridwidth = 2;
-        gridBagConstraints.ipadx = 253;
+        gridBagConstraints.ipadx = 213;
         gridBagConstraints.ipady = 19;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.insets = new java.awt.Insets(43, 197, 0, 187);
         getContentPane().add(manVSMan, gridBagConstraints);
 
         manVSComputer.setText("Man VS Computer");
+        manVSComputer.setMaximumSize(new java.awt.Dimension(113, 27));
+        manVSComputer.setMinimumSize(new java.awt.Dimension(113, 27));
+        manVSComputer.setPreferredSize(new java.awt.Dimension(113, 27));
         manVSComputer.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 manVSComputerActionPerformed(evt);
@@ -72,7 +75,7 @@ public class selectBattleModeFrame extends javax.swing.JFrame {
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 2;
         gridBagConstraints.gridwidth = 2;
-        gridBagConstraints.ipadx = 213;
+        gridBagConstraints.ipadx = 203;
         gridBagConstraints.ipady = 18;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.insets = new java.awt.Insets(28, 197, 132, 187);
@@ -83,12 +86,24 @@ public class selectBattleModeFrame extends javax.swing.JFrame {
 
     private void manVSManActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_manVSManActionPerformed
         dispose();
-        new RockPaperScissors( "Man VS Man");
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+               roundJFrame round =  new roundJFrame();
+               round.changeBattleMode("Man VS Man");
+               round.setVisible(true);
+            }
+        });
     }//GEN-LAST:event_manVSManActionPerformed
 
     private void manVSComputerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_manVSComputerActionPerformed
         dispose();
-        new RockPaperScissors( "Man VS Computer");
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+               roundJFrame round =  new roundJFrame();
+               round.changeBattleMode("Man VS Computer");
+               round.setVisible(true);
+            }
+        });
     }//GEN-LAST:event_manVSComputerActionPerformed
 
     /**
@@ -119,7 +134,6 @@ public class selectBattleModeFrame extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

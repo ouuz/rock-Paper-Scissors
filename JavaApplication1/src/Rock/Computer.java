@@ -4,20 +4,23 @@
  * and open the template in the editor.
  */
 package Rock;
-
+import java.util.Random;
 /**
  *
  * @author ouu
  */
 public class Computer {
+    private Random r;
      private int fistCode = 0;
      private int scroe = 0;
      
-     public void changeFistCode(int fistCode){
-         this.fistCode = fistCode;
+     public void randomFistCode(){
+          r = new Random();
+          fistCode = r.nextInt(3);
      }
      
     public int getFistCode(){
+        randomFistCode();
           return fistCode;
      }
 }
