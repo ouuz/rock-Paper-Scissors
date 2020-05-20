@@ -4,7 +4,9 @@
  * and open the template in the editor.
  */
 package Rock;
-
+import Rock.Person;
+import Rock.frame.gameFrame;
+import Rock.frame.selectBattleModeFrame;
 /**
  *
  * @author ouu
@@ -19,10 +21,6 @@ import java.awt.event.*;
 public class RockPaperScissors extends JFrame {
  private Random r;
  private final String[] box = {"剪刀","石头","布"};
- private final String[] iconBox = {
-     "C:\\Users\\ouu\\Documents\\NetBeansProjects\\JavaApplication1\\src\\1.png",
-     "C:\\Users\\ouu\\Documents\\NetBeansProjects\\JavaApplication1\\src\\2.png",
-     "C:\\Users\\ouu\\Documents\\NetBeansProjects\\JavaApplication1\\src\\3.png"};
  private JComboBox<String> choice;
  private JFrame frame = null;
  private JTextArea ta;
@@ -30,19 +28,16 @@ public class RockPaperScissors extends JFrame {
  private int win=0;
  private int loss=0;
  private int equal=0;
- private String player1Code = "",player2Code = "";
  
  /*
  * @description 创建新窗口：选择玩家人数的窗口
  */
   public RockPaperScissors() {
-  setTitle("选择人机对战 / 人人对战");
-  choiceNumbersOfPlayers();
-  pack();
-  setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-  setSize(300, 300);
-  setLocation(400, 300);
-  setVisible(true);
+      java.awt.EventQueue.invokeLater(new Runnable() {
+          public void run() {
+              new selectBattleModeFrame().setVisible(true);
+          }
+      });
  }
   
  /*
@@ -50,94 +45,18 @@ public class RockPaperScissors extends JFrame {
  * @param { String } String gameMode 游戏模式
  */
  public RockPaperScissors(String gameMode) {
-  setTitle(gameMode);
   if(gameMode == "Man VS Man")
       manInitial();
   else
     computerInitial();
-  pack();
-  setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-  setSize(300, 300);
-  setLocation(400, 300);
-  setVisible(true);
- }
- 
- /*
- * @description 选择玩家人数后跳转新窗口
- */ 
- public void choiceNumbersOfPlayers(){
-     JButton manBtn = new JButton("Man VS Man"); 
-     JButton computerBtn = new JButton("Man VS Computer");
+ } 
 
-     manBtn.addActionListener(new ActionListener() {
-        public void actionPerformed(ActionEvent e){
-            dispose();
-            new RockPaperScissors( "Man VS Man");
-        }
-    });
-     
-     computerBtn.addActionListener(new ActionListener() {
-        public void actionPerformed(ActionEvent e){
-            dispose();
-            new RockPaperScissors( "Man VS Computer");
-        }
-    });
-     
-    JPanel choiceNumbersOfPlayersPanel = new JPanel();
-    choiceNumbersOfPlayersPanel.add(manBtn);
-    choiceNumbersOfPlayersPanel.add(computerBtn);
-    
-    Container contentPane = getContentPane();
-    contentPane.setLayout(new BorderLayout());
-    contentPane.add(choiceNumbersOfPlayersPanel, BorderLayout.CENTER);
- }
- 
- /*
- * @description 人人对战
- *player1: a:石头65 b:剪刀83 c:布68
- *player2: ←:石头37 ↓:剪刀40 →:布39
- */ 
  public void manInitial(){
-     
-    ImageIcon icon = new ImageIcon("C:\\Users\\ouu\\Documents\\NetBeansProjects\\JavaApplication1\\src\\1.png"); 
-    JButton player = new JButton(icon);
-     
-    player.addKeyListener(new KeyAdapter(){
-        public void keyPressed(KeyEvent e){
-            switch(e.getKeyCode()){
-                case 65:
-                    player1Code ="石头";
-                    break;
-                case 83: 
-                    player1Code ="剪刀";
-                    break;
-                case 68: 
-                    player1Code ="布";
-                    break;
-                case 37:
-                    player2Code ="石头";
-                    break;
-                case 40:
-                    player2Code ="剪刀";
-                    break;
-                case 39:
-                    player2Code ="布";
-                    break;
+     java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                new gameFrame().setVisible(true);
             }
-            System.out.println(player1Code);
-            System.out.println(player2Code);
-            System.out.println();
-       } 
-    });
-     
-    JPanel choiceNumbersOfPlayersPanel = new JPanel();
-    choiceNumbersOfPlayersPanel.add(player);
-    
-    Container contentPane = getContentPane();
-    contentPane.setLayout(new BorderLayout());
-    contentPane.add(choiceNumbersOfPlayersPanel, BorderLayout.CENTER);
-    
-    
+        });
  }
  
  public void computerInitial() {
