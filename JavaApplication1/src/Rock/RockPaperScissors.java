@@ -4,26 +4,21 @@
  * and open the template in the editor.
  */
 package Rock;
-
-import Rock.frame.selectBattleModeFrame;
-
+import Rock.frame.selectModeFrame;
 /**
  *
  * @author ouu
  */
+public class RockPaperScissors {
 
-public class RockPaperScissors  {
-
-    /*
-     * @description 创建新窗口：选择玩家人数的窗口
+    /**
+     * @description 创建选择玩家人数的窗口
      */
     public RockPaperScissors() {
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                selectBattleModeFrame selectBattleMode = new selectBattleModeFrame();
-                selectBattleMode.setVisible(true);
-                selectBattleMode.setResizable(false);;
-            }
+        java.awt.EventQueue.invokeLater(() -> {
+            selectModeFrame selectBattleMode = new selectModeFrame();
+            selectBattleMode.setVisible(true);
+            selectBattleMode.setResizable(false);
         });
     }
 

@@ -5,104 +5,40 @@
  */
 package Rock.frame;
 
+import java.awt.event.*;
+import java.util.Calendar;
 import java.util.Timer;
 import Rock.Person;
-import Rock.RockPaperScissors;
 import Rock.Computer;
-import java.util.Random;
-import javax.swing.*;
 import javax.swing.ImageIcon;
-import java.awt.BorderLayout;
-import java.awt.Container;
-import java.awt.event.*;
 
 /**
  *
  * @author ouu
  */
-public class gameFrame extends javax.swing.JFrame {
+public class GameFrame extends javax.swing.JFrame {
 
-    private final String[] iconBox = {
-        "C:\\Users\\ouu\\Documents\\NetBeansProjects\\JavaApplication1\\src\\1.png",
-        "C:\\Users\\ouu\\Documents\\NetBeansProjects\\JavaApplication1\\src\\2.png",
-        "C:\\Users\\ouu\\Documents\\NetBeansProjects\\JavaApplication1\\src\\3.png"};
+    ImageIcon endIcon = new ImageIcon("src\\image\\0.png");
+    ImageIcon countIcon = new ImageIcon("src\\image\\countDown.gif");
+    ImageIcon fistGif = new ImageIcon("src\\image\\fist.gif");
+    private final String[] iconBox = {"src\\image\\1.png", "src\\image\\2.png", "src\\image\\3.png"};
     private int round = 0;
     private String battleMode = "";
     private int player2WinNumber = 0;
     private int player1WinNumber = 0;
     private int hadRound = 0;
     private int aheadRound = 0;
+    private int player1Code = 3;
+    private int player2Code = 3;
 
-    public void judge(int player1, int player2) {
-        if (player1 == (player2 + 1) % 3) {
-            player1WinNumber++;
-        } else if (player1 == player2) {
-        } else {
-            player2WinNumber++;
-        }
-
-        player1Win_Number.setText(Integer.toString(player1WinNumber));
-        player2Win_Number.setText(Integer.toString(player2WinNumber));
-        hadRound++;
-    }
-
-    public void countDown(JLabel gameIcon) {
-        int countDown = 3;
-        while (countDown >= 0) {
-            try {
-                Thread.sleep(1000);
-            } catch (InterruptedException e) {
-            }
-
-            System.out.println(countDown);
-            gameIcon.setText(Integer.toString(countDown));
-            countDown--;
-        }
-    }
-
-    public void manVsMan_countDown(Person player1, Person player2, JLabel gameIcon) {
-        int countDown = 3;
-        while (countDown >= 0) {
-            try {
-                Thread.sleep(1000);
-            } catch (InterruptedException e) {
-            }
-
-            System.out.println(countDown);
-            gameIcon.setText(Integer.toString(countDown));
-            player1.changeFistCode(3);
-            player2.changeFistCode(3);
-            countDown--;
-        }
-
-    }
-
-    public String getFinalWinner() {
-        String winner = "";
-        if (battleMode == "Man VS Man") {
-            if (player1WinNumber > player2WinNumber) {
-                winner = "player1";
-            } else if (player1WinNumber < player2WinNumber) {
-                winner = "player2";
-            } else {
-                winner = "equal";
-            }
-        } else {
-            if (player1WinNumber > player2WinNumber) {
-                winner = "man";
-            } else if (player1WinNumber < player2WinNumber) {
-                winner = "computer";
-            } else {
-                winner = "equal";
-            }
-        }
-        return winner;
-    }
+    Person player1 = new Person();
+    Person player2 = new Person();
+    Computer player3 = new Computer();
 
     /**
-     * Creates new form gameFrame
+     * Creates new form GameFrame
      */
-    public gameFrame() {
+    public GameFrame() {
         initComponents();
     }
 
@@ -115,137 +51,43 @@ public class gameFrame extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        beginBtn = new javax.swing.JButton();
-        jPanel1 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
-        player1ResultIcon = new javax.swing.JLabel();
-        jPanel2 = new javax.swing.JPanel();
-        jLabel2 = new javax.swing.JLabel();
-        player2ResultIcon = new javax.swing.JLabel();
-        jPanel3 = new javax.swing.JPanel();
-        player1Win = new javax.swing.JLabel();
-        player1Win_Number = new javax.swing.JLabel();
-        jPanel4 = new javax.swing.JPanel();
-        player2Win = new javax.swing.JLabel();
-        player2Win_Number = new javax.swing.JLabel();
         gameIcon = new javax.swing.JLabel();
+        beginBtn = new javax.swing.JButton();
+        player1Label = new javax.swing.JLabel();
+        player1ResultIcon = new javax.swing.JLabel();
+        player1WinLabel = new javax.swing.JLabel();
+        player1Win = new javax.swing.JLabel();
+        player2Label = new javax.swing.JLabel();
+        player2ResultIcon = new javax.swing.JLabel();
+        player2WinLabel = new javax.swing.JLabel();
+        player2Win = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        beginBtn.setText("Begin");
+        gameIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/countstart.png"))); // NOI18N
+
+        beginBtn.setText("begin");
         beginBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 beginBtnActionPerformed(evt);
             }
         });
 
-        jLabel1.setText("player1");
+        player1Label.setText("player1");
 
-        player1ResultIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/2.gif"))); // NOI18N
+        player1ResultIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/1.png"))); // NOI18N
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(player1ResultIcon)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel1)
-                .addGap(35, 35, 35))
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(8, 8, 8)
-                .addComponent(jLabel1)
-                .addGap(18, 18, 18)
-                .addComponent(player1ResultIcon)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
+        player1WinLabel.setText("player1Win：");
 
-        jLabel2.setText("player2");
+        player1Win.setText("0");
 
-        player2ResultIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/2.gif"))); // NOI18N
+        player2Label.setText("player2");
 
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(player2ResultIcon))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(35, 35, 35)
-                        .addComponent(jLabel2)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(8, 8, 8)
-                .addComponent(jLabel2)
-                .addGap(18, 18, 18)
-                .addComponent(player2ResultIcon)
-                .addContainerGap(27, Short.MAX_VALUE))
-        );
+        player2ResultIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/1.png"))); // NOI18N
 
-        player1Win.setText("player1Win:");
+        player2WinLabel.setText("player2Win：");
 
-        player1Win_Number.setText("0");
-
-        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
-        jPanel3.setLayout(jPanel3Layout);
-        jPanel3Layout.setHorizontalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(39, 39, 39)
-                .addComponent(player1Win)
-                .addGap(30, 30, 30)
-                .addComponent(player1Win_Number)
-                .addContainerGap(81, Short.MAX_VALUE))
-        );
-        jPanel3Layout.setVerticalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(player1Win)
-                    .addComponent(player1Win_Number))
-                .addContainerGap())
-        );
-
-        player2Win.setText("player2Win:");
-
-        player2Win_Number.setText("0");
-
-        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
-        jPanel4.setLayout(jPanel4Layout);
-        jPanel4Layout.setHorizontalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel4Layout.createSequentialGroup()
-                .addGap(43, 43, 43)
-                .addComponent(player2Win)
-                .addGap(18, 18, 18)
-                .addComponent(player2Win_Number)
-                .addContainerGap(69, Short.MAX_VALUE))
-        );
-        jPanel4Layout.setVerticalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
-                .addContainerGap(18, Short.MAX_VALUE)
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(player2Win)
-                    .addComponent(player2Win_Number))
-                .addContainerGap())
-        );
-
-        gameIcon.setFont(new java.awt.Font("幼圆", 0, 48)); // NOI18N
-        gameIcon.setText("3");
+        player2Win.setText("0");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -254,69 +96,76 @@ public class gameFrame extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(264, 264, 264)
-                        .addComponent(beginBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 216, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(52, 52, 52)
+                        .addComponent(player1Label))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(357, 357, 357)
-                        .addComponent(gameIcon)))
-                .addContainerGap(372, Short.MAX_VALUE))
+                        .addGap(30, 30, 30)
+                        .addComponent(player1ResultIcon))
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(player1WinLabel)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(player1Win)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(38, 38, 38)
+                        .addComponent(player2Label))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(16, 16, 16)
+                        .addComponent(player2ResultIcon))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(player2WinLabel)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(player2Win)))
+                .addGap(46, 46, 46))
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(73, 73, 73)
-                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(364, 364, 364)
+                        .addComponent(gameIcon))
                     .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 366, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(77, 77, 77))
-                    .addComponent(jPanel4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(315, 315, 315)
+                        .addComponent(beginBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 203, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(334, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(106, 106, 106)
-                .addComponent(gameIcon)
-                .addGap(40, 40, 40)
-                .addComponent(beginBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(62, 62, 62)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGap(69, 69, 69)
+                .addComponent(gameIcon, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(34, 34, 34)
+                .addComponent(beginBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(89, 89, 89)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE))
+                        .addComponent(player2Label)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(player2ResultIcon)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(player2WinLabel)
+                            .addComponent(player2Win)))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGap(4, 4, 4)))
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addComponent(player1Label)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(player1ResultIcon)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(player1WinLabel)
+                            .addComponent(player1Win))))
+                .addContainerGap(28, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    /*
- * @description 人人对战 / 人机对战
- *player1: 
-    a:布49 => 0 
-    b:剪刀50 => 1
-    c:石头51 => 2
- *player2: 
-    ←:布37  => 0
-    ↓:剪刀40  => 1
-    →:石头39 => 2
+    
+    /**
+     * @description 游戏开始
      */
     private void beginBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_beginBtnActionPerformed
-
-        Person player1 = new Person();
-
-        if (battleMode == "Man VS Man") {
-            Person player2 = new Person();
-            manVsMan_countDown(player1, player2, gameIcon);
-
+        countDown();
+        if ("Man VS Man".equals(battleMode)) {   
             beginBtn.addKeyListener(new KeyAdapter() {
                 int flag = 0;
 
@@ -324,63 +173,72 @@ public class gameFrame extends javax.swing.JFrame {
                     getKeyWord(e, player1, player2);
                     flag++;
                     if (flag == 2) {
-                        int player1Code = player1.getFistCode();
-                        int player2Code = player2.getFistCode();
+                        player1Code = player1.getFistCode();
+                        player2Code = player2.getFistCode();
                         beginBtn.removeKeyListener(this);
-                        mistakeProofing(player1Code, player2Code);
-                        
                         flag = 0;
                     }
                 }
             }
             );
-        } else {
-            Computer player2 = new Computer();
-            countDown(gameIcon);
-
+        } else {            
             beginBtn.addKeyListener(new KeyAdapter() {
                 public void keyPressed(KeyEvent e) {
                     getKeyWord(e, player1);
-                    int player1Code = player1.getFistCode();
-                    int player2Code = player2.getFistCode();
+                    player1Code = player1.getFistCode();
+                    player2Code = player3.getFistCode();
                     beginBtn.removeKeyListener(this);
-                    mistakeProofing(player1Code, player2Code);
                 }
             });
         }
     }//GEN-LAST:event_beginBtnActionPerformed
 
+    /**
+     * @description 人人对战时同时按下键盘放出错判断
+     * @param player1Code 玩家1的出拳结果代表号码
+     * @param player2Code 玩家2的出拳结果代表号码
+     */
     public void mistakeProofing(int player1Code, int player2Code) {
         judge(player1Code, player2Code);
         changeIcon(player1Code, player2Code);
 
         if (hadRound >= round || player1WinNumber >= aheadRound || player2WinNumber >= aheadRound) {
-            java.awt.EventQueue.invokeLater(new Runnable() {
-                public void run() {
-                    dialogJFrame dialog = new dialogJFrame();
-                    dialog.setFinalStatement(battleMode, getFinalWinner());
-                    dialog.setVisible(true);
-                    dispose();
-                }
+            java.awt.EventQueue.invokeLater(() -> {
+                dialogJFrame dialog = new dialogJFrame();
+                dialog.setFinalStatement(battleMode, getFinalWinner());
+                dialog.setVisible(true);
+                dispose();
             });
         }
 
     }
 
+    /**
+     * @description 人机对战获得玩家出拳结果 player1: a:布49 => 0 b:剪刀50 => 1 c:石头51 => 2
+     * @param e 监听键盘事件的e
+     * @param player1 玩家1
+     */
     public void getKeyWord(KeyEvent e, Person player1) {
         switch (e.getKeyCode()) {
-            case 49:
+            case 37:
                 player1.changeFistCode(0);
                 break;
-            case 50:
+            case 40:
                 player1.changeFistCode(1);
                 break;
-            case 51:
+            case 39:
                 player1.changeFistCode(2);
                 break;
         }
     }
 
+    /**
+     * @description 人人对战获得玩家出拳结果 player1: a:布49 => 0 b:剪刀50 => 1 c:石头51 => 2
+     * player2: ←:布37 => 0 ↓:剪刀40 => 1 →:石头39 => 2
+     * @param e 监听键盘事件的e
+     * @param player1 玩家1
+     * @param player2 玩家2
+     */
     public void getKeyWord(KeyEvent e, Person player1, Person player2) {
         switch (e.getKeyCode()) {
             case 49:
@@ -404,29 +262,108 @@ public class gameFrame extends javax.swing.JFrame {
         }
     }
 
+    /**
+     * @description 初始化游戏模式+回合
+     * @param battleMode 游戏模式
+     * @param round 游戏回合
+     */
     public void inital(String battleMode, int round) {
-        if (battleMode == "Man VS Computer") {
-            player1Win.setText("playerWin");
-            player2Win.setText("computerWin");
+        if ("Man VS Computer".equals(battleMode)) {
+            player1WinLabel.setText("playerWin");
+            player2WinLabel.setText("computerWin");
         }
         this.round = round;
-        if (round == 5) {
-            aheadRound = 3;
-        } else if (round == 3) {
-            aheadRound = 2;
-        } else {
-            aheadRound = 1;
+        switch (round) {
+            case 5:
+                aheadRound = 3;
+                break;
+            case 3:
+                aheadRound = 2;
+                break;
+            default:
+                aheadRound = 1;
+                break;
         }
 
         this.battleMode = battleMode;
 
     }
 
-    public void changeIcon(int player1, int player2) {
-        ImageIcon image1 = new ImageIcon(iconBox[player1]);
-        ImageIcon image2 = new ImageIcon(iconBox[player2]);
+    /**
+     * @description 玩家出拳后改变页面上的出拳结果
+     * @param player1Code 玩家1出的拳对应代表号码
+     * @param player2Code 玩家2出的拳对应代表号码
+     */
+    public void changeIcon(int player1Code, int player2Code) {
+        ImageIcon image1 = new ImageIcon(iconBox[player1Code]);
+        ImageIcon image2 = new ImageIcon(iconBox[player2Code]);
         player1ResultIcon.setIcon(image1);
         player2ResultIcon.setIcon(image2);
+    }
+
+    /**
+     * @description 判断游戏结果
+     * @param player1Code 玩家1出的拳对应代表号码
+     * @param player2Code 玩家2出的拳对应代表号码
+     */
+    public void judge(int player1Code, int player2Code) {
+        if (player1Code == (player2Code + 1) % 3) {
+            player1WinNumber++;
+        } else if (player1Code == player2Code) {
+        } else {
+            player2WinNumber++;
+        }
+
+        player1Win.setText(Integer.toString(player1WinNumber));
+        player2Win.setText(Integer.toString(player2WinNumber));
+        hadRound++;
+    }
+
+    /**
+     * @description 游戏开始后的倒计时
+     */
+    public void countDown() {
+        gameIcon.setIcon(countIcon);
+        player1ResultIcon.setIcon(fistGif);
+        player2ResultIcon.setIcon(fistGif);
+
+        Calendar calendar = Calendar.getInstance();
+        calendar.add(Calendar.SECOND, 03);
+
+        Timer timer = new Timer();
+        timer.schedule(new java.util.TimerTask() {
+            @Override
+            public void run() {
+                gameIcon.setIcon(endIcon);
+                mistakeProofing(player1Code, player2Code);
+            }
+        }, calendar.getTime());
+    }
+
+    /**
+     * @return 获胜玩家的名字
+     * @description 判断游戏的最后赢家
+     */
+    public String getFinalWinner() {
+        String winner;
+        if ("Man VS Man".equals(battleMode)) {
+            if (player1WinNumber > player2WinNumber) {
+                winner = "player1";
+            } else if (player1WinNumber < player2WinNumber) {
+                winner = "player2";
+            } else {
+                winner = "equal";
+            }
+        } else {
+            if (player1WinNumber > player2WinNumber) {
+                winner = "man";
+            } else if (player1WinNumber < player2WinNumber) {
+                winner = "computer";
+            } else {
+                winner = "equal";
+            }
+        }
+        return winner;
     }
 
     /**
@@ -446,32 +383,34 @@ public class gameFrame extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(gameFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(GameFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(gameFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(GameFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(gameFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(GameFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(gameFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(GameFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
+        /* Create and display the form */
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                new GameFrame().setVisible(true);
+            }
+        });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton beginBtn;
     private javax.swing.JLabel gameIcon;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
-    private javax.swing.JPanel jPanel3;
-    private javax.swing.JPanel jPanel4;
+    private javax.swing.JLabel player1Label;
     private javax.swing.JLabel player1ResultIcon;
     private javax.swing.JLabel player1Win;
-    private javax.swing.JLabel player1Win_Number;
+    private javax.swing.JLabel player1WinLabel;
+    private javax.swing.JLabel player2Label;
     private javax.swing.JLabel player2ResultIcon;
     private javax.swing.JLabel player2Win;
-    private javax.swing.JLabel player2Win_Number;
+    private javax.swing.JLabel player2WinLabel;
     // End of variables declaration//GEN-END:variables
 }

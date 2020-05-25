@@ -5,8 +5,6 @@
  */
 package Rock.frame;
 
-import Rock.RockPaperScissors;
-
 /**
  *
  * @author ouu
@@ -14,6 +12,7 @@ import Rock.RockPaperScissors;
 public class roundJFrame extends javax.swing.JFrame {
 
     private String battleMode = "";
+    private int round = 0;
 
     /**
      * Creates new form roundJFrame
@@ -95,32 +94,47 @@ public class roundJFrame extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    /**
+     * @description 选择一局定输赢
+     */
     private void oneRoundActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_oneRoundActionPerformed
-        dispose();
-        createGameWindow(battleMode, 1);
+        round = 1;
+        createGameWindow();
     }//GEN-LAST:event_oneRoundActionPerformed
 
+    /**
+     * @description 选择三局两胜
+     */
     private void threeRoundActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_threeRoundActionPerformed
-        dispose();
-        createGameWindow(battleMode, 3);
+        round = 3;
+        createGameWindow();
     }//GEN-LAST:event_threeRoundActionPerformed
 
+    /**
+     * @description 选择五局三胜
+     */
     private void fiveRoundActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fiveRoundActionPerformed
-        dispose();
-        createGameWindow(battleMode, 5);
+        round = 5;
+        createGameWindow();
     }//GEN-LAST:event_fiveRoundActionPerformed
 
-    public void createGameWindow(String gameMode, int round) {
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                gameFrame game = new gameFrame();
-                game.inital(gameMode, round);
-                game.setVisible(true);
-                game.setResizable(false);
-            }
+    /**
+     * @description 创建游戏窗口
+     */
+    public void createGameWindow() {
+        dispose();
+        java.awt.EventQueue.invokeLater(() -> {
+           GameFrame game = new GameFrame();
+            game.inital(battleMode, round);
+            game.setVisible(true);
+            game.setResizable(false);
         });
     }
 
+    /**
+     * @description 更改游戏模式
+     * @param mode 游戏模式
+     */
     public void changeBattleMode(String mode) {
         battleMode = mode;
     }
