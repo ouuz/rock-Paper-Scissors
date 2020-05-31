@@ -5,6 +5,8 @@
  */
 package Rock.frame;
 
+import java.awt.Toolkit;
+
 /**
  *
  * @author ouu
@@ -14,9 +16,14 @@ public class roundJFrame extends javax.swing.JFrame {
     private String battleMode = "";
     private int round = 0;
 
-    /**
-     * Creates new form roundJFrame
-     */
+    public int width = Toolkit.getDefaultToolkit().getScreenSize().width;
+    public int height = Toolkit.getDefaultToolkit().getScreenSize().height;
+    public int windowsWedth = 800;
+    public int windowsHeight = 630;
+
+        /**
+         * Creates new form roundJFrame
+         */
     public roundJFrame() {
         initComponents();
     }
@@ -34,62 +41,48 @@ public class roundJFrame extends javax.swing.JFrame {
         oneRound = new javax.swing.JButton();
         threeRound = new javax.swing.JButton();
         fiveRound = new javax.swing.JButton();
+        bg = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel1.setFont(new java.awt.Font("幼圆", 0, 24)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("华文彩云", 0, 36)); // NOI18N
         jLabel1.setText("Round of selection");
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 160, -1, -1));
 
+        oneRound.setBackground(new java.awt.Color(242, 247, 225));
+        oneRound.setFont(new java.awt.Font("华文彩云", 1, 18)); // NOI18N
         oneRound.setText("A game is a sure bet");
         oneRound.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 oneRoundActionPerformed(evt);
             }
         });
+        getContentPane().add(oneRound, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 220, 305, 57));
 
+        threeRound.setBackground(new java.awt.Color(150, 218, 226));
+        threeRound.setFont(new java.awt.Font("华文彩云", 1, 18)); // NOI18N
         threeRound.setText("Two out of three sets match");
         threeRound.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 threeRoundActionPerformed(evt);
             }
         });
+        getContentPane().add(threeRound, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 310, 305, 55));
 
+        fiveRound.setBackground(new java.awt.Color(235, 157, 196));
+        fiveRound.setFont(new java.awt.Font("华文彩云", 1, 18)); // NOI18N
         fiveRound.setText("Three out of five sets match");
         fiveRound.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 fiveRoundActionPerformed(evt);
             }
         });
+        getContentPane().add(fiveRound, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 400, 305, 51));
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(265, 265, 265)
-                .addComponent(jLabel1)
-                .addContainerGap(269, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(fiveRound, javax.swing.GroupLayout.DEFAULT_SIZE, 305, Short.MAX_VALUE)
-                    .addComponent(threeRound, javax.swing.GroupLayout.DEFAULT_SIZE, 305, Short.MAX_VALUE)
-                    .addComponent(oneRound, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(220, 220, 220))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(107, 107, 107)
-                .addComponent(jLabel1)
-                .addGap(18, 18, 18)
-                .addComponent(oneRound, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(29, 29, 29)
-                .addComponent(threeRound, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(29, 29, 29)
-                .addComponent(fiveRound, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(77, Short.MAX_VALUE))
-        );
+        bg.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/bg.jpg"))); // NOI18N
+        getContentPane().add(bg, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
+        bg.getAccessibleContext().setAccessibleName("bg");
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -124,8 +117,10 @@ public class roundJFrame extends javax.swing.JFrame {
     public void createGameWindow() {
         dispose();
         java.awt.EventQueue.invokeLater(() -> {
-           GameFrame game = new GameFrame();
+            GameFrame game = new GameFrame();
+            game.setTitle(" 对战ing");
             game.inital(battleMode, round);
+            game.setBounds((width - windowsWedth) / 2, (height - windowsHeight) / 2, windowsWedth, windowsHeight);
             game.setVisible(true);
             game.setResizable(false);
         });
@@ -169,6 +164,7 @@ public class roundJFrame extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel bg;
     private javax.swing.JButton fiveRound;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JButton oneRound;

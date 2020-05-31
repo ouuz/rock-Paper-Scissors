@@ -5,7 +5,7 @@
  */
 package Rock.frame;
 
-import Rock.RockPaperScissors;
+import Rock.frame.selectModeFrame;
 
 /**
  *
@@ -32,52 +32,38 @@ public class dialogJFrame extends javax.swing.JFrame {
         finalStatement = new javax.swing.JLabel();
         close = new javax.swing.JButton();
         again = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        finalStatement.setFont(new java.awt.Font("宋体", 0, 24)); // NOI18N
+        finalStatement.setFont(new java.awt.Font("华文彩云", 0, 24)); // NOI18N
         finalStatement.setText("恭喜你获得了本次游戏的胜利！");
+        getContentPane().add(finalStatement, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 240, 340, 40));
 
+        close.setBackground(new java.awt.Color(242, 247, 225));
+        close.setFont(new java.awt.Font("华文彩云", 1, 18)); // NOI18N
         close.setText("结束游戏");
         close.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 closeActionPerformed(evt);
             }
         });
+        getContentPane().add(close, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 339, -1, 40));
 
+        again.setBackground(new java.awt.Color(150, 218, 226));
+        again.setFont(new java.awt.Font("华文彩云", 1, 18)); // NOI18N
         again.setText("再来一局");
         again.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 againActionPerformed(evt);
             }
         });
+        getContentPane().add(again, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 337, -1, 40));
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(86, Short.MAX_VALUE)
-                .addComponent(finalStatement)
-                .addGap(75, 75, 75))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(123, 123, 123)
-                .addComponent(close)
-                .addGap(55, 55, 55)
-                .addComponent(again)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(73, 73, 73)
-                .addComponent(finalStatement, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(65, 65, 65)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(close)
-                    .addComponent(again))
-                .addContainerGap(101, Short.MAX_VALUE))
-        );
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/bg.jpg"))); // NOI18N
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 790, 600));
+        jLabel1.getAccessibleContext().setAccessibleName("bg");
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -94,7 +80,7 @@ public class dialogJFrame extends javax.swing.JFrame {
      */
     private void againActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_againActionPerformed
         dispose();
-        RockPaperScissors game = new RockPaperScissors();
+        new selectModeFrame().createSelectModeFrame();
     }//GEN-LAST:event_againActionPerformed
 
     /**
@@ -109,17 +95,17 @@ public class dialogJFrame extends javax.swing.JFrame {
                     finalStatement.setText("恭喜你赢得了本次游戏的胜利！");
                     break;
                 case "computer":
-                    finalStatement.setText("很遗憾你输掉了这场游戏，再接再厉！");
+                    finalStatement.setText("很遗憾你输了游戏，再接再厉！");
                     break;
                 default:
-                    finalStatement.setText("你居然和电脑打成平手！");
+                    finalStatement.setText("好厉害，居然和电脑打成平手！");
                     break;
             }
         } else {
             if ("equal".equals(winner)) {
-                finalStatement.setText("两位玩家不分上下，平局！");
+                finalStatement.setText("两位玩家不分上下，游戏平局！");
             } else {
-                finalStatement.setText("恭喜" + winner + "赢得了本次游戏的胜利！");
+                finalStatement.setText("恭喜" + winner + "赢得了本次游戏！");
             }
         }
     }
@@ -157,5 +143,6 @@ public class dialogJFrame extends javax.swing.JFrame {
     private javax.swing.JButton again;
     private javax.swing.JButton close;
     private javax.swing.JLabel finalStatement;
+    private javax.swing.JLabel jLabel1;
     // End of variables declaration//GEN-END:variables
 }

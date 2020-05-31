@@ -5,6 +5,8 @@
  */
 package Rock.frame;
 
+import java.awt.Toolkit;
+
 /**
  *
  * @author ouu
@@ -12,6 +14,11 @@ package Rock.frame;
 public class selectModeFrame extends javax.swing.JFrame {
 
     private String battleMode = "";
+
+    public int width = Toolkit.getDefaultToolkit().getScreenSize().width;
+    public int height = Toolkit.getDefaultToolkit().getScreenSize().height;
+    public int windowsWedth = 800;
+    public int windowsHeight = 630;
 
     /**
      * Creates new form selectModeFrame
@@ -32,12 +39,20 @@ public class selectModeFrame extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         manVSman = new javax.swing.JButton();
         manVScomputer = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
+        bg = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setBackground(new java.awt.Color(240, 240, 238));
+        setBounds(new java.awt.Rectangle(0, 0, 0, 0));
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel1.setFont(new java.awt.Font("幼圆", 0, 36)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("华文彩云", 0, 36)); // NOI18N
         jLabel1.setText("Rock paper scissors");
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 170, 320, 40));
 
+        manVSman.setBackground(new java.awt.Color(242, 247, 225));
+        manVSman.setFont(new java.awt.Font("华文彩云", 1, 18)); // NOI18N
         manVSman.setText("Man VS Man");
         manVSman.setActionCommand("manVSman");
         manVSman.addActionListener(new java.awt.event.ActionListener() {
@@ -45,41 +60,22 @@ public class selectModeFrame extends javax.swing.JFrame {
                 manVSmanActionPerformed(evt);
             }
         });
+        getContentPane().add(manVSman, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 250, 289, 63));
 
+        manVScomputer.setBackground(new java.awt.Color(150, 218, 226));
+        manVScomputer.setFont(new java.awt.Font("华文彩云", 1, 18)); // NOI18N
         manVScomputer.setText("Man VS Computer");
         manVScomputer.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 manVScomputerActionPerformed(evt);
             }
         });
+        getContentPane().add(manVScomputer, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 350, 289, 66));
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(864, 82, -1, -1));
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap(221, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jLabel1)
-                        .addGap(187, 187, 187))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(manVSman, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(manVScomputer, javax.swing.GroupLayout.DEFAULT_SIZE, 289, Short.MAX_VALUE))
-                        .addGap(214, 214, 214))))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(113, 113, 113)
-                .addComponent(jLabel1)
-                .addGap(43, 43, 43)
-                .addComponent(manVSman, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(manVScomputer, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(106, Short.MAX_VALUE))
-        );
+        bg.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/bg.jpg"))); // NOI18N
+        getContentPane().add(bg, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, 600));
+        bg.getAccessibleContext().setAccessibleName("bg");
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -109,10 +105,23 @@ public class selectModeFrame extends javax.swing.JFrame {
             public void run() {
                 roundJFrame round = new roundJFrame();
                 round.changeBattleMode(battleMode);
+                round.setTitle(" 选择回合数目");
+                round.setBounds((width - windowsWedth) / 2, (height - windowsHeight) / 2, windowsWedth, windowsHeight);
                 round.setVisible(true);
                 round.setResizable(false);
             }
         });
+    }
+
+    /**
+     * @description 创建选择回合数窗口的一些额外设定
+     */
+    public void createSelectModeFrame() {
+            selectModeFrame selectBattleMode = new selectModeFrame();
+            selectBattleMode.setTitle(" 选择对战模式");
+            selectBattleMode.setBounds((width - windowsWedth) / 2, (height - windowsHeight) / 2, windowsWedth, windowsHeight);
+            selectBattleMode.setVisible(true);
+            selectBattleMode.setResizable(false);
     }
 
     /**
@@ -141,17 +150,16 @@ public class selectModeFrame extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(selectModeFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new selectModeFrame().setVisible(true);
-            }
+        java.awt.EventQueue.invokeLater(() -> {
+            new selectModeFrame().createSelectModeFrame();
         });
+
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel bg;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JButton manVScomputer;
     private javax.swing.JButton manVSman;
     // End of variables declaration//GEN-END:variables

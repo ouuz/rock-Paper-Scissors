@@ -10,6 +10,7 @@ import java.util.Calendar;
 import java.util.Timer;
 import Rock.Person;
 import Rock.Computer;
+import java.awt.Toolkit;
 import javax.swing.ImageIcon;
 
 /**
@@ -21,7 +22,7 @@ public class GameFrame extends javax.swing.JFrame {
     ImageIcon endIcon = new ImageIcon("src\\image\\0.png");
     ImageIcon countIcon = new ImageIcon("src\\image\\countDown.gif");
     ImageIcon fistGif = new ImageIcon("src\\image\\fist.gif");
-    private final String[] iconBox = {"src\\image\\1.png", "src\\image\\2.png", "src\\image\\3.png"};
+    private final String[] iconBox = {"src\\image\\1.png", "src\\image\\2.png", "src\\image\\3.png", "src\\image\\X.png"};
     private int round = 0;
     private String battleMode = "";
     private int player2WinNumber = 0;
@@ -30,6 +31,11 @@ public class GameFrame extends javax.swing.JFrame {
     private int aheadRound = 0;
     private int player1Code = 3;
     private int player2Code = 3;
+
+    public int width = Toolkit.getDefaultToolkit().getScreenSize().width;
+    public int height = Toolkit.getDefaultToolkit().getScreenSize().height;
+    public int windowsWedth = 800;
+    public int windowsHeight = 630;
 
     Person player1 = new Person();
     Person player2 = new Person();
@@ -61,117 +67,78 @@ public class GameFrame extends javax.swing.JFrame {
         player2ResultIcon = new javax.swing.JLabel();
         player2WinLabel = new javax.swing.JLabel();
         player2Win = new javax.swing.JLabel();
+        bg = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         gameIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/countstart.png"))); // NOI18N
+        getContentPane().add(gameIcon, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 120, 90, 110));
 
+        beginBtn.setBackground(new java.awt.Color(242, 247, 225));
+        beginBtn.setFont(new java.awt.Font("华文彩云", 1, 18)); // NOI18N
         beginBtn.setText("begin");
         beginBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 beginBtnActionPerformed(evt);
             }
         });
+        getContentPane().add(beginBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 240, 200, 60));
 
+        player1Label.setFont(new java.awt.Font("华文彩云", 0, 15)); // NOI18N
         player1Label.setText("player1");
+        getContentPane().add(player1Label, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 360, -1, -1));
 
         player1ResultIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/1.png"))); // NOI18N
+        getContentPane().add(player1ResultIcon, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 380, -1, -1));
 
+        player1WinLabel.setFont(new java.awt.Font("华文彩云", 0, 15)); // NOI18N
         player1WinLabel.setText("player1Win：");
+        getContentPane().add(player1WinLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 500, -1, -1));
 
+        player1Win.setFont(new java.awt.Font("华文彩云", 1, 24)); // NOI18N
+        player1Win.setForeground(new java.awt.Color(2, 180, 84));
         player1Win.setText("0");
+        getContentPane().add(player1Win, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 486, 30, 40));
 
+        player2Label.setFont(new java.awt.Font("华文彩云", 0, 15)); // NOI18N
         player2Label.setText("player2");
+        getContentPane().add(player2Label, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 360, -1, -1));
 
         player2ResultIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/1.png"))); // NOI18N
+        getContentPane().add(player2ResultIcon, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 380, -1, -1));
 
+        player2WinLabel.setFont(new java.awt.Font("华文彩云", 0, 15)); // NOI18N
         player2WinLabel.setText("player2Win：");
+        getContentPane().add(player2WinLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 500, -1, -1));
 
+        player2Win.setFont(new java.awt.Font("华文彩云", 1, 24)); // NOI18N
+        player2Win.setForeground(new java.awt.Color(2, 180, 84));
         player2Win.setText("0");
+        getContentPane().add(player2Win, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 490, 30, 30));
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(52, 52, 52)
-                        .addComponent(player1Label))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(30, 30, 30)
-                        .addComponent(player1ResultIcon))
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(player1WinLabel)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(player1Win)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(38, 38, 38)
-                        .addComponent(player2Label))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(16, 16, 16)
-                        .addComponent(player2ResultIcon))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(player2WinLabel)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(player2Win)))
-                .addGap(46, 46, 46))
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(364, 364, 364)
-                        .addComponent(gameIcon))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(315, 315, 315)
-                        .addComponent(beginBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 203, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(334, Short.MAX_VALUE))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(69, 69, 69)
-                .addComponent(gameIcon, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(34, 34, 34)
-                .addComponent(beginBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(89, 89, 89)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(player2Label)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(player2ResultIcon)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(player2WinLabel)
-                            .addComponent(player2Win)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(player1Label)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(player1ResultIcon)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(player1WinLabel)
-                            .addComponent(player1Win))))
-                .addContainerGap(28, Short.MAX_VALUE))
-        );
+        bg.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/bg.jpg"))); // NOI18N
+        getContentPane().add(bg, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
+        bg.getAccessibleContext().setAccessibleName("bg");
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-    
+
     /**
      * @description 游戏开始
      */
     private void beginBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_beginBtnActionPerformed
         countDown();
-        if ("Man VS Man".equals(battleMode)) {   
+        if ("Man VS Man".equals(battleMode)) {
             beginBtn.addKeyListener(new KeyAdapter() {
                 int flag = 0;
 
                 public void keyPressed(KeyEvent e) {
                     getKeyWord(e, player1, player2);
                     flag++;
+                    player1Code = player1.getFistCode();
+                    player2Code = player2.getFistCode();
+
                     if (flag == 2) {
                         player1Code = player1.getFistCode();
                         player2Code = player2.getFistCode();
@@ -181,12 +148,12 @@ public class GameFrame extends javax.swing.JFrame {
                 }
             }
             );
-        } else {            
+        } else {
+            player2Code = player3.getFistCode();
             beginBtn.addKeyListener(new KeyAdapter() {
                 public void keyPressed(KeyEvent e) {
                     getKeyWord(e, player1);
                     player1Code = player1.getFistCode();
-                    player2Code = player3.getFistCode();
                     beginBtn.removeKeyListener(this);
                 }
             });
@@ -199,16 +166,25 @@ public class GameFrame extends javax.swing.JFrame {
      * @param player2Code 玩家2的出拳结果代表号码
      */
     public void mistakeProofing(int player1Code, int player2Code) {
-        judge(player1Code, player2Code);
-        changeIcon(player1Code, player2Code);
-
         if (hadRound >= round || player1WinNumber >= aheadRound || player2WinNumber >= aheadRound) {
-            java.awt.EventQueue.invokeLater(() -> {
-                dialogJFrame dialog = new dialogJFrame();
-                dialog.setFinalStatement(battleMode, getFinalWinner());
-                dialog.setVisible(true);
-                dispose();
-            });
+            Calendar calendar = Calendar.getInstance();
+            calendar.add(Calendar.SECOND, 01);
+
+            Timer timer = new Timer();
+            timer.schedule(new java.util.TimerTask() {
+                @Override
+                public void run() {
+                    java.awt.EventQueue.invokeLater(() -> {
+                        dialogJFrame dialog = new dialogJFrame();
+                        dialog.setFinalStatement(battleMode, getFinalWinner());
+                        dialog.setTitle("剪刀石头布");
+                        dialog.setBounds((width - windowsWedth) / 2, (height - windowsHeight) / 2, windowsWedth, windowsHeight);
+                        dialog.setVisible(true);
+                        dialog.setResizable(false);
+                        dispose();
+                    });
+                }
+            }, calendar.getTime());
         }
 
     }
@@ -269,8 +245,8 @@ public class GameFrame extends javax.swing.JFrame {
      */
     public void inital(String battleMode, int round) {
         if ("Man VS Computer".equals(battleMode)) {
-            player1WinLabel.setText("playerWin");
-            player2WinLabel.setText("computerWin");
+            player1WinLabel.setText("playerWin：");
+            player2WinLabel.setText("computerWin：");
         }
         this.round = round;
         switch (round) {
@@ -307,11 +283,18 @@ public class GameFrame extends javax.swing.JFrame {
      * @param player2Code 玩家2出的拳对应代表号码
      */
     public void judge(int player1Code, int player2Code) {
-        if (player1Code == (player2Code + 1) % 3) {
-            player1WinNumber++;
-        } else if (player1Code == player2Code) {
-        } else {
+        if (player1Code != 3 && player2Code != 3) {
+            if (player1Code == (player2Code + 1) % 3) {
+                player1WinNumber++;
+            } else if (player1Code == player2Code) {
+            } else {
+                player2WinNumber++;
+            }
+        } else if (player1Code == 3 && player2Code != 3) {
             player2WinNumber++;
+        } else if (player2Code == 3 && player1Code != 3) {
+            player1WinNumber++;
+        } else if (player1Code == 3 && player1Code == 3) {
         }
 
         player1Win.setText(Integer.toString(player1WinNumber));
@@ -335,6 +318,8 @@ public class GameFrame extends javax.swing.JFrame {
             @Override
             public void run() {
                 gameIcon.setIcon(endIcon);
+                judge(player1Code, player2Code);
+                changeIcon(player1Code, player2Code);
                 mistakeProofing(player1Code, player2Code);
             }
         }, calendar.getTime());
@@ -394,15 +379,14 @@ public class GameFrame extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new GameFrame().setVisible(true);
-            }
+        java.awt.EventQueue.invokeLater(() -> {
+            new GameFrame().setVisible(true);
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton beginBtn;
+    private javax.swing.JLabel bg;
     private javax.swing.JLabel gameIcon;
     private javax.swing.JLabel player1Label;
     private javax.swing.JLabel player1ResultIcon;
