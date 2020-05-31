@@ -104,7 +104,7 @@ public class selectModeFrame extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 roundJFrame round = new roundJFrame();
-                round.changeBattleMode(battleMode);
+                round.getBattleMode(battleMode);
                 round.setTitle(" 选择回合数目");
                 round.setBounds((width - windowsWedth) / 2, (height - windowsHeight) / 2, windowsWedth, windowsHeight);
                 round.setVisible(true);
@@ -114,7 +114,7 @@ public class selectModeFrame extends javax.swing.JFrame {
     }
 
     /**
-     * @description 创建选择回合数窗口的一些额外设定
+     * @description 创建选择游戏模式数窗口的一些额外设定
      */
     public void createSelectModeFrame() {
             selectModeFrame selectBattleMode = new selectModeFrame();

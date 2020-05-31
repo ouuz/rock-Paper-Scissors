@@ -129,7 +129,10 @@ public class GameFrame extends javax.swing.JFrame {
      */
     private void beginBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_beginBtnActionPerformed
         countDown();
+        player1.changeFistCode(3);
+        
         if ("Man VS Man".equals(battleMode)) {
+            player2.changeFistCode(3);
             beginBtn.addKeyListener(new KeyAdapter() {
                 int flag = 0;
 
@@ -190,50 +193,50 @@ public class GameFrame extends javax.swing.JFrame {
     }
 
     /**
-     * @description 人机对战获得玩家出拳结果 player1: a:布49 => 0 b:剪刀50 => 1 c:石头51 => 2
+     * @description 人机对战获得玩家出拳结果 player1: ←:剪刀37 => 1 ↓:石头40 => 2 →:布39 => 0
      * @param e 监听键盘事件的e
      * @param player1 玩家1
      */
     public void getKeyWord(KeyEvent e, Person player1) {
         switch (e.getKeyCode()) {
             case 37:
-                player1.changeFistCode(0);
-                break;
-            case 40:
                 player1.changeFistCode(1);
                 break;
-            case 39:
+            case 40:
                 player1.changeFistCode(2);
+                break;
+            case 39:
+                player1.changeFistCode(0);
                 break;
         }
     }
 
     /**
-     * @description 人人对战获得玩家出拳结果 player1: a:布49 => 0 b:剪刀50 => 1 c:石头51 => 2
-     * player2: ←:布37 => 0 ↓:剪刀40 => 1 →:石头39 => 2
+     * @description 人人对战获得玩家出拳结果 player1: F1:剪刀112 => 1 F2:石头113 => 2 F3:布114 =>
+     * 0 player2: ←:剪刀37 => 1 ↓:石头40 => 2 →:布39 => 0
      * @param e 监听键盘事件的e
      * @param player1 玩家1
      * @param player2 玩家2
      */
     public void getKeyWord(KeyEvent e, Person player1, Person player2) {
         switch (e.getKeyCode()) {
-            case 49:
-                player1.changeFistCode(0);
-                break;
-            case 50:
+            case 112:
                 player1.changeFistCode(1);
                 break;
-            case 51:
+            case 113:
                 player1.changeFistCode(2);
                 break;
-            case 37:
-                player2.changeFistCode(0);
+            case 114:
+                player1.changeFistCode(0);
                 break;
-            case 40:
+            case 37:
                 player2.changeFistCode(1);
                 break;
-            case 39:
+            case 40:
                 player2.changeFistCode(2);
+                break;
+            case 39:
+                player2.changeFistCode(0);
                 break;
         }
     }
@@ -378,10 +381,6 @@ public class GameFrame extends javax.swing.JFrame {
         }
         //</editor-fold>
 
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(() -> {
-            new GameFrame().setVisible(true);
-        });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

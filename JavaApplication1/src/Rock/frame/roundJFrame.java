@@ -6,7 +6,7 @@
 package Rock.frame;
 
 import java.awt.Toolkit;
-
+import Rock.frame.RuleShowFrame;
 /**
  *
  * @author ouu
@@ -92,7 +92,7 @@ public class roundJFrame extends javax.swing.JFrame {
      */
     private void oneRoundActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_oneRoundActionPerformed
         round = 1;
-        createGameWindow();
+        createRuleShow();
     }//GEN-LAST:event_oneRoundActionPerformed
 
     /**
@@ -100,7 +100,7 @@ public class roundJFrame extends javax.swing.JFrame {
      */
     private void threeRoundActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_threeRoundActionPerformed
         round = 3;
-        createGameWindow();
+        createRuleShow();
     }//GEN-LAST:event_threeRoundActionPerformed
 
     /**
@@ -108,29 +108,29 @@ public class roundJFrame extends javax.swing.JFrame {
      */
     private void fiveRoundActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fiveRoundActionPerformed
         round = 5;
-        createGameWindow();
+        createRuleShow();
     }//GEN-LAST:event_fiveRoundActionPerformed
 
     /**
-     * @description 创建游戏窗口
+     * @description 创建规则展示窗口
      */
-    public void createGameWindow() {
+    public void createRuleShow() {
         dispose();
         java.awt.EventQueue.invokeLater(() -> {
-            GameFrame game = new GameFrame();
-            game.setTitle(" 对战ing");
-            game.inital(battleMode, round);
-            game.setBounds((width - windowsWedth) / 2, (height - windowsHeight) / 2, windowsWedth, windowsHeight);
-            game.setVisible(true);
-            game.setResizable(false);
+            RuleShowFrame Showrule = new RuleShowFrame();
+            Showrule.setTitle(" 游戏规则");
+            Showrule.getSelections(battleMode,round);
+            Showrule.setBounds((width - windowsWedth) / 2, (height - windowsHeight) / 2, windowsWedth, windowsHeight);
+            Showrule.setVisible(true);
+            Showrule.setResizable(false);
         });
     }
 
     /**
-     * @description 更改游戏模式
+     * @description 获得游戏模式
      * @param mode 游戏模式
      */
-    public void changeBattleMode(String mode) {
+    public void getBattleMode(String mode) {
         battleMode = mode;
     }
 
