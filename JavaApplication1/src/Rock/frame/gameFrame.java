@@ -11,6 +11,7 @@ import java.util.Timer;
 import Rock.Person;
 import Rock.Computer;
 import java.awt.Toolkit;
+import java.util.TimerTask;
 import javax.swing.ImageIcon;
 
 /**
@@ -19,8 +20,6 @@ import javax.swing.ImageIcon;
  */
 public class GameFrame extends javax.swing.JFrame {
 
-    ImageIcon endIcon = new ImageIcon("src\\image\\0.png");
-    ImageIcon countIcon = new ImageIcon("src\\image\\countDown.gif");
     ImageIcon fistGif = new ImageIcon("src\\image\\fist.gif");
     private final String[] iconBox = {"src\\image\\1.png", "src\\image\\2.png", "src\\image\\3.png", "src\\image\\X.png"};
     private int round = 0;
@@ -67,13 +66,16 @@ public class GameFrame extends javax.swing.JFrame {
         player2ResultIcon = new javax.swing.JLabel();
         player2WinLabel = new javax.swing.JLabel();
         player2Win = new javax.swing.JLabel();
+        hadLabel = new javax.swing.JLabel();
+        roundHad = new javax.swing.JLabel();
         bg = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        gameIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/countstart.png"))); // NOI18N
-        getContentPane().add(gameIcon, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 120, 90, 110));
+        gameIcon.setFont(new java.awt.Font("华文彩云", 3, 48)); // NOI18N
+        gameIcon.setText("3");
+        getContentPane().add(gameIcon, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 150, 60, 80));
 
         beginBtn.setBackground(new java.awt.Color(242, 247, 225));
         beginBtn.setFont(new java.awt.Font("华文彩云", 1, 18)); // NOI18N
@@ -92,14 +94,14 @@ public class GameFrame extends javax.swing.JFrame {
         player1ResultIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/1.png"))); // NOI18N
         getContentPane().add(player1ResultIcon, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 380, -1, -1));
 
-        player1WinLabel.setFont(new java.awt.Font("华文彩云", 0, 15)); // NOI18N
+        player1WinLabel.setFont(new java.awt.Font("华文彩云", 0, 18)); // NOI18N
         player1WinLabel.setText("player1Win：");
-        getContentPane().add(player1WinLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 500, -1, -1));
+        getContentPane().add(player1WinLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 500, -1, -1));
 
         player1Win.setFont(new java.awt.Font("华文彩云", 1, 24)); // NOI18N
         player1Win.setForeground(new java.awt.Color(2, 180, 84));
         player1Win.setText("0");
-        getContentPane().add(player1Win, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 486, 30, 40));
+        getContentPane().add(player1Win, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 490, 30, 40));
 
         player2Label.setFont(new java.awt.Font("华文彩云", 0, 15)); // NOI18N
         player2Label.setText("player2");
@@ -108,18 +110,26 @@ public class GameFrame extends javax.swing.JFrame {
         player2ResultIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/1.png"))); // NOI18N
         getContentPane().add(player2ResultIcon, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 380, -1, -1));
 
-        player2WinLabel.setFont(new java.awt.Font("华文彩云", 0, 15)); // NOI18N
+        player2WinLabel.setFont(new java.awt.Font("华文彩云", 0, 18)); // NOI18N
         player2WinLabel.setText("player2Win：");
-        getContentPane().add(player2WinLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 500, -1, -1));
+        getContentPane().add(player2WinLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 500, -1, -1));
 
         player2Win.setFont(new java.awt.Font("华文彩云", 1, 24)); // NOI18N
         player2Win.setForeground(new java.awt.Color(2, 180, 84));
         player2Win.setText("0");
-        getContentPane().add(player2Win, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 490, 30, 30));
+        getContentPane().add(player2Win, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 490, 40, 40));
+
+        hadLabel.setFont(new java.awt.Font("华文彩云", 0, 18)); // NOI18N
+        hadLabel.setText("hadRound:");
+        getContentPane().add(hadLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 440, -1, -1));
+
+        roundHad.setFont(new java.awt.Font("华文彩云", 1, 24)); // NOI18N
+        roundHad.setForeground(new java.awt.Color(2, 180, 84));
+        roundHad.setText("0");
+        getContentPane().add(roundHad, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 430, 20, 40));
 
         bg.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/bg.jpg"))); // NOI18N
         getContentPane().add(bg, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
-        bg.getAccessibleContext().setAccessibleName("bg");
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -130,7 +140,7 @@ public class GameFrame extends javax.swing.JFrame {
     private void beginBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_beginBtnActionPerformed
         countDown();
         player1.changeFistCode(3);
-        
+
         if ("Man VS Man".equals(battleMode)) {
             player2.changeFistCode(3);
             beginBtn.addKeyListener(new KeyAdapter() {
@@ -164,7 +174,7 @@ public class GameFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_beginBtnActionPerformed
 
     /**
-     * @description 人人对战时同时按下键盘放出错判断
+     * @description 人人对战时同时按下键盘防出错判断
      * @param player1Code 玩家1的出拳结果代表号码
      * @param player2Code 玩家2的出拳结果代表号码
      */
@@ -300,32 +310,51 @@ public class GameFrame extends javax.swing.JFrame {
         } else if (player1Code == 3 && player1Code == 3) {
         }
 
+        hadRound++;
         player1Win.setText(Integer.toString(player1WinNumber));
         player2Win.setText(Integer.toString(player2WinNumber));
-        hadRound++;
+        roundHad.setText(Integer.toString(hadRound));
+
     }
 
     /**
      * @description 游戏开始后的倒计时
      */
     public void countDown() {
-        gameIcon.setIcon(countIcon);
         player1ResultIcon.setIcon(fistGif);
         player2ResultIcon.setIcon(fistGif);
 
         Calendar calendar = Calendar.getInstance();
-        calendar.add(Calendar.SECOND, 03);
 
         Timer timer = new Timer();
-        timer.schedule(new java.util.TimerTask() {
-            @Override
-            public void run() {
-                gameIcon.setIcon(endIcon);
+        timer.schedule(new Task(timer), calendar.getTime(), 1000);
+
+    }
+
+    /**
+     * @description 倒计时的任务清单
+     */
+    class Task extends TimerTask {
+
+        private Timer timer;
+
+        public Task(Timer timer) {
+            this.timer = timer;
+        }
+
+        int countDown = 3;
+
+        @Override
+        public void run() {
+            gameIcon.setText(countDown + "");
+
+            if (countDown-- == 0) {
                 judge(player1Code, player2Code);
                 changeIcon(player1Code, player2Code);
                 mistakeProofing(player1Code, player2Code);
+                this.timer.cancel();
             }
-        }, calendar.getTime());
+        }
     }
 
     /**
@@ -387,6 +416,7 @@ public class GameFrame extends javax.swing.JFrame {
     private javax.swing.JButton beginBtn;
     private javax.swing.JLabel bg;
     private javax.swing.JLabel gameIcon;
+    private javax.swing.JLabel hadLabel;
     private javax.swing.JLabel player1Label;
     private javax.swing.JLabel player1ResultIcon;
     private javax.swing.JLabel player1Win;
@@ -395,5 +425,6 @@ public class GameFrame extends javax.swing.JFrame {
     private javax.swing.JLabel player2ResultIcon;
     private javax.swing.JLabel player2Win;
     private javax.swing.JLabel player2WinLabel;
+    private javax.swing.JLabel roundHad;
     // End of variables declaration//GEN-END:variables
 }
