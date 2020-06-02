@@ -94,7 +94,7 @@ public class RuleShowFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_beginActionPerformed
 
     /**
-     * @description 创建游戏窗口
+     *   创建游戏窗口
      */
     public void createGameWindow() {
         dispose();
@@ -109,7 +109,9 @@ public class RuleShowFrame extends javax.swing.JFrame {
     }
 
     /**
-     * @description 获得游戏模式和游戏回合
+     *   获得游戏模式和游戏回合
+     * @param mode 游戏模式
+     * @param battleRound 游戏回合数
      */
     public void getSelections(String mode, int battleRound) {
         battleMode = mode;

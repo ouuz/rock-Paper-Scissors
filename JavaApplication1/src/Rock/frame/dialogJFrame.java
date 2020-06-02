@@ -69,14 +69,14 @@ public class dialogJFrame extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     /**
-     * @description 结束游戏
+     *   结束游戏
      */
     private void closeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_closeActionPerformed
         System.exit(0);
     }//GEN-LAST:event_closeActionPerformed
 
     /**
-     * @description 再来一局
+     *   再来一局
      */
     private void againActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_againActionPerformed
         dispose();
@@ -84,7 +84,7 @@ public class dialogJFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_againActionPerformed
 
     /**
-     * @description 设置弹框dialog的文本内容
+     *   设置弹框dialog的文本内容
      * @param battleMode 游戏模式
      * @param winner 游戏的最后赢家名字
      */

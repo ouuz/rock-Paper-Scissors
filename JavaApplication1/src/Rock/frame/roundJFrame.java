@@ -88,7 +88,7 @@ public class roundJFrame extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     /**
-     * @description 选择一局定输赢
+     *   选择一局定输赢
      */
     private void oneRoundActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_oneRoundActionPerformed
         round = 1;
@@ -96,7 +96,7 @@ public class roundJFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_oneRoundActionPerformed
 
     /**
-     * @description 选择三局两胜
+     *   选择三局两胜
      */
     private void threeRoundActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_threeRoundActionPerformed
         round = 3;
@@ -104,7 +104,7 @@ public class roundJFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_threeRoundActionPerformed
 
     /**
-     * @description 选择五局三胜
+     *   选择五局三胜
      */
     private void fiveRoundActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fiveRoundActionPerformed
         round = 5;
@@ -112,7 +112,7 @@ public class roundJFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_fiveRoundActionPerformed
 
     /**
-     * @description 创建规则展示窗口
+     *   创建规则展示窗口
      */
     public void createRuleShow() {
         dispose();
@@ -127,7 +127,7 @@ public class roundJFrame extends javax.swing.JFrame {
     }
 
     /**
-     * @description 获得游戏模式
+     *   获得游戏模式
      * @param mode 游戏模式
      */
     public void getBattleMode(String mode) {

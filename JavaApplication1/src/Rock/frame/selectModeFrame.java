@@ -81,7 +81,7 @@ public class selectModeFrame extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     /**
-     * @description 选择人人对战模式
+     *   选择人人对战模式
      */
     private void manVSmanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_manVSmanActionPerformed
         battleMode = "Man VS Man";
@@ -89,7 +89,7 @@ public class selectModeFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_manVSmanActionPerformed
 
     /**
-     * @description 选择人机对战模式
+     *   选择人机对战模式
      */
     private void manVScomputerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_manVScomputerActionPerformed
         battleMode = "Man VS Computer";
@@ -97,7 +97,7 @@ public class selectModeFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_manVScomputerActionPerformed
 
     /**
-     * @description 创建选择回合数窗口
+     *   创建选择回合数窗口
      */
     public void createRoundFrame() {
         dispose();
@@ -114,7 +114,7 @@ public class selectModeFrame extends javax.swing.JFrame {
     }
 
     /**
-     * @description 创建选择游戏模式数窗口的一些额外设定
+     *   创建选择游戏模式数窗口的一些额外设定
      */
     public void createSelectModeFrame() {
             selectModeFrame selectBattleMode = new selectModeFrame();

@@ -135,7 +135,7 @@ public class GameFrame extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     /**
-     * @description 游戏开始
+     *   游戏开始
      */
     private void beginBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_beginBtnActionPerformed
         countDown();
@@ -174,11 +174,11 @@ public class GameFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_beginBtnActionPerformed
 
     /**
-     * @description 人人对战时同时按下键盘防出错判断
+     *   GameOver弹框
      * @param player1Code 玩家1的出拳结果代表号码
      * @param player2Code 玩家2的出拳结果代表号码
      */
-    public void mistakeProofing(int player1Code, int player2Code) {
+    public void gameOver(int player1Code, int player2Code) {
         if (hadRound >= round || player1WinNumber >= aheadRound || player2WinNumber >= aheadRound) {
             Calendar calendar = Calendar.getInstance();
             calendar.add(Calendar.SECOND, 01);
@@ -203,7 +203,7 @@ public class GameFrame extends javax.swing.JFrame {
     }
 
     /**
-     * @description 人机对战获得玩家出拳结果 player1: ←:剪刀37 => 1 ↓:石头40 => 2 →:布39 => 0
+     *   人机对战获得玩家出拳结果 player1: ←:剪刀37 == 1 ↓:石头40 == 2 →:布39 == 0
      * @param e 监听键盘事件的e
      * @param player1 玩家1
      */
@@ -222,8 +222,8 @@ public class GameFrame extends javax.swing.JFrame {
     }
 
     /**
-     * @description 人人对战获得玩家出拳结果 player1: F1:剪刀112 => 1 F2:石头113 => 2 F3:布114 =>
-     * 0 player2: ←:剪刀37 => 1 ↓:石头40 => 2 →:布39 => 0
+     *   人人对战获得玩家出拳结果 player1: F1:剪刀112 == 1 F2:石头113 == 2 F3:布114 ==
+     * 0 player2: ←:剪刀37 == 1 ↓:石头40 == 2 →:布39 == 0
      * @param e 监听键盘事件的e
      * @param player1 玩家1
      * @param player2 玩家2
@@ -252,7 +252,7 @@ public class GameFrame extends javax.swing.JFrame {
     }
 
     /**
-     * @description 初始化游戏模式+回合
+     * 初始化游戏模式+回合
      * @param battleMode 游戏模式
      * @param round 游戏回合
      */
@@ -279,7 +279,7 @@ public class GameFrame extends javax.swing.JFrame {
     }
 
     /**
-     * @description 玩家出拳后改变页面上的出拳结果
+     *   玩家出拳后改变页面上的出拳结果
      * @param player1Code 玩家1出的拳对应代表号码
      * @param player2Code 玩家2出的拳对应代表号码
      */
@@ -291,7 +291,7 @@ public class GameFrame extends javax.swing.JFrame {
     }
 
     /**
-     * @description 判断游戏结果
+     *   判断游戏结果
      * @param player1Code 玩家1出的拳对应代表号码
      * @param player2Code 玩家2出的拳对应代表号码
      */
@@ -318,7 +318,7 @@ public class GameFrame extends javax.swing.JFrame {
     }
 
     /**
-     * @description 游戏开始后的倒计时
+     *   游戏开始后的倒计时
      */
     public void countDown() {
         player1ResultIcon.setIcon(fistGif);
@@ -332,7 +332,7 @@ public class GameFrame extends javax.swing.JFrame {
     }
 
     /**
-     * @description 倒计时的任务清单
+     *   倒计时的任务清单
      */
     class Task extends TimerTask {
 
@@ -351,7 +351,7 @@ public class GameFrame extends javax.swing.JFrame {
             if (countDown-- == 0) {
                 judge(player1Code, player2Code);
                 changeIcon(player1Code, player2Code);
-                mistakeProofing(player1Code, player2Code);
+                gameOver(player1Code, player2Code);
                 this.timer.cancel();
             }
         }
@@ -359,7 +359,7 @@ public class GameFrame extends javax.swing.JFrame {
 
     /**
      * @return 获胜玩家的名字
-     * @description 判断游戏的最后赢家
+     *   判断游戏的最后赢家
      */
     public String getFinalWinner() {
         String winner;

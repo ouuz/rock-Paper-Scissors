@@ -17,7 +17,7 @@ public class Computer {
     private int fistCode = 0;
 
     /**
-     * @description 电脑随机出拳
+     *   电脑随机出拳
      */
     public void randomFistCode() {
         r = new Random();
@@ -25,7 +25,7 @@ public class Computer {
     }
 
     /**
-     * @description 获得电脑出拳结果
+     *   获得电脑出拳结果
      * @return 返回出拳结果
      */
     public int getFistCode() {

@@ -15,15 +15,13 @@ public class Person {
 
     /**
      * @param fistCode 玩家实时出拳结果
-     * @description 更改玩家出拳结果
      */
     public void changeFistCode(int fistCode) {
         this.fistCode = fistCode;
     }
 
     /**
-     * @return 返回玩家实时出拳结果
-     * @description 获得玩家出拳结果
+     * @return 玩家实时出拳结果
      */
     public int getFistCode() {
         return fistCode;
