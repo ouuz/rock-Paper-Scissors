@@ -162,6 +162,7 @@ public class GameFrame extends javax.swing.JFrame {
             }
             );
         } else {
+            player1Code = player1.getFistCode();
             player2Code = player3.getFistCode();
             beginBtn.addKeyListener(new KeyAdapter() {
                 public void keyPressed(KeyEvent e) {
